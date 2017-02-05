@@ -2,6 +2,8 @@
 
 Unity Android Multiple Builds is an Asset for Unity to perform multiple android builds to be sent to Google Play. Multiple builds are used to improve game performance across multiple devices. This Asset make builds on the ARMv7 and x86 architectures, combining the six existing texture types for Android.
 
+![Unity Android Multiple Builds Asset](http://i.imgur.com/4gAojbx.png)
+
 # Downloads
 
 Please check out our [releases](https://github.com/keiseentertainment/UnityAndroidMultipleBuilds/releases) for the latest version of the Asset.
