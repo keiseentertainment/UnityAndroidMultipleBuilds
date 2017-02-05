@@ -57,12 +57,19 @@ namespace AndroidMultipleBuilds.ScreenshotTool
         #region ongui
         void OnGUI()
         {
-            //string[] versionAux = Application.version.Split('.');
-            //string versionAux2 = Application.version.Replace(".", "");
+            try
+            {
+                bundleVersionCode = int.Parse(Application.version.Replace(".", "")) * 100;
+            }
+            catch (System.Exception e)
+            {
+                bundleVersionCode = PlayerSettings.Android.bundleVersionCode;
+            }
 
-            bundleVersionCode = int.Parse(Application.version.Replace(".", "")) * 100;
+            GUILayout.BeginArea(new Rect(0, 0, this.position.width, this.position.height));
+            GUILayout.BeginVertical();
 
-            scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, false, GUILayout.Width(EditorGUIUtility.currentViewWidth), GUILayout.Height(650));
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(EditorGUIUtility.currentViewWidth), GUILayout.MinHeight(200), GUILayout.MaxHeight(600));
 
             EditorGUILayout.Space();
 
@@ -114,41 +121,43 @@ namespace AndroidMultipleBuilds.ScreenshotTool
 
             EditorGUILayout.Space();
 
-            GUILayout.Label("Keystore", EditorStyles.boldLabel);
 
-            EditorGUILayout.BeginHorizontal();
+            //GUILayout.Label("Keystore", EditorStyles.boldLabel);
 
-            if (GUILayout.Button("Browse Keystore", GUILayout.ExpandWidth(false)))
-            {
-                //keystorePath = EditorUtility.SaveFolderPanel("Selecione a Keystore", keystorePath, Application.dataPath);
-                keystorePath = EditorUtility.OpenFilePanel("Open existing keystore...", Application.dataPath, "Keystore;*.keystore");
-            }
-            EditorGUILayout.LabelField(keystorePath, GUILayout.ExpandWidth(true));
+            //EditorGUILayout.BeginHorizontal();
 
-            EditorGUILayout.EndHorizontal();
+            //if (GUILayout.Button("Browse Keystore", GUILayout.ExpandWidth(false)))
+            //{
+            //    //keystorePath = EditorUtility.SaveFolderPanel("Selecione a Keystore", keystorePath, Application.dataPath);
+            //    keystorePath = EditorUtility.OpenFilePanel("Open existing keystore...", Application.dataPath, "Keystore;*.keystore");
+            //}
+            //EditorGUILayout.LabelField(keystorePath, GUILayout.ExpandWidth(true));
 
-            EditorGUILayout.Space();
+            //EditorGUILayout.EndHorizontal();
 
-            if (keystorePath != "")
-            {
-                EditorGUILayout.Space();
+            //EditorGUILayout.Space();
 
-                //keystorePass = EditorGUILayout.TextField("Keystore Pass", keystorePass);
-                keystorePass = EditorGUILayout.PasswordField("Keystore password", keystorePass);
-                keyaliasName = EditorGUILayout.TextField("Keystore Alias Name", keyaliasName);
-                //keyaliasPass = EditorGUILayout.TextField("Keystore Alias Pass", keyaliasPass);
-                keyaliasPass = EditorGUILayout.PasswordField("Keystore Alias password", keyaliasPass);
-            }
-            else
-            {
-                EditorGUILayout.HelpBox("If the project does not have a keystore, it is not necessary to select any file.", MessageType.Info);
-            }
+            //if (keystorePath != "")
+            //{
+            //    EditorGUILayout.Space();
+
+            //    //keystorePass = EditorGUILayout.TextField("Keystore Pass", keystorePass);
+            //    keystorePass = EditorGUILayout.PasswordField("Keystore password", keystorePass);
+            //    keyaliasName = EditorGUILayout.TextField("Keystore Alias Name", keyaliasName);
+            //    //keyaliasPass = EditorGUILayout.TextField("Keystore Alias Pass", keyaliasPass);
+            //    keyaliasPass = EditorGUILayout.PasswordField("Keystore Alias password", keyaliasPass);
+            //}
+            //else
+            //{
+            //    EditorGUILayout.HelpBox("If the project does not have a keystore, it is not necessary to select any file.", MessageType.Info);
+            //}
 
             EditorGUILayout.Space();
 
             GUILayout.Label(string.Format("Version: {0}", Application.version), EditorStyles.boldLabel);
             GUILayout.Label(string.Format("Bundle Version Code: {0}", bundleVersionCode), EditorStyles.boldLabel);
-            EditorGUILayout.HelpBox("The Bundle Version Code is based on the Version of the project for easy identification.", MessageType.Info);
+            //bundleVersionCode = EditorGUILayout.IntField("Bundle Version", bundleVersionCode);
+            EditorGUILayout.HelpBox("Enter the Bundle Version Code with three digits or more. The last two digits is used to identify the type of architecture and texture.", MessageType.Info);
 
             EditorGUILayout.Space();
 
@@ -256,6 +265,8 @@ namespace AndroidMultipleBuilds.ScreenshotTool
             GUILayout.Label("Special thanks for João Neto and Marcelo Henrique Cenço", EditorStyles.label);
 
             GUILayout.EndScrollView();
+            GUILayout.EndVertical();
+            GUILayout.EndArea();
         }
         #endregion
 
