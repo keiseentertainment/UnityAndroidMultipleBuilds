@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-namespace AndroidMultipleBuilds.ScreenshotTool
+namespace AndroidMultipleBuilds
 {
     [ExecuteInEditMode]
     public class AndroidMultipleBuilds : EditorWindow
