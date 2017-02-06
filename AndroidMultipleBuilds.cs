@@ -9,10 +9,10 @@ namespace AndroidMultipleBuilds.ScreenshotTool
     public class AndroidMultipleBuilds : EditorWindow
     {
         #region variables
-        public string keystorePath = "";
-        public string keystorePass = "";
-        public string keyaliasName = "";
-        public string keyaliasPass = "";
+        //public string keystorePath = "";
+        //public string keystorePass = "";
+        //public string keyaliasName = "";
+        //public string keyaliasPass = "";
         public string savePath = "";
 
         public int bundleVersionCode = 1;
@@ -273,13 +273,13 @@ namespace AndroidMultipleBuilds.ScreenshotTool
         #region processbuilds
         void ProcessAllBuilds()
         {
-            if (keystorePath != "")
-            {
-                PlayerSettings.Android.keystoreName = keystorePath;
-                PlayerSettings.Android.keystorePass = keystorePass;
-                PlayerSettings.Android.keyaliasName = keyaliasName;
-                PlayerSettings.Android.keyaliasPass = keyaliasPass;
-            }
+            //if (keystorePath != "")
+            //{
+            //    PlayerSettings.Android.keystoreName = keystorePath;
+            //    PlayerSettings.Android.keystorePass = keystorePass;
+            //    PlayerSettings.Android.keyaliasName = keyaliasName;
+            //    PlayerSettings.Android.keyaliasPass = keyaliasPass;
+            //}
 
             textureConfigsARM = new List<MobileTextureSubtarget>();
             textureConfigsX86 = new List<MobileTextureSubtarget>();
